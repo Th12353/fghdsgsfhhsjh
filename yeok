@@ -3,5 +3,5 @@ local check = "https://raw.githubusercontent.com/Th12353/fghdsgsfhhsjh/main/Chec
 if game:HttpGet(check) == "Whitelisted" then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Th12353/Admin-GUI/main/W%40%40"))()
 else
-game.Players.LocalPlayer:Kick("Invalid Key! Please Rejoin And Try Again.")
+game.Players.LocalPlayer:Kick("Wrong key you stupid fuck!")
 end
