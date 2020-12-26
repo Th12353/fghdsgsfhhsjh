@@ -16,6 +16,10 @@ $database = array(
 		"hwid" => ""
 	),
 	array(
+		"key" => "key_krnl",
+		"hwid" => "e0ec89c0-2a3a-11eb-ba6e-806e6f6e6963"
+	),
+	array(
 		"key" => "key_protosmasher",
 		"hwid" => ""
 	),
