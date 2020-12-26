@@ -1,7 +1,7 @@
 local key = _G.Key
 local check = "https://raw.githubusercontent.com/Th12353/fghdsgsfhhsjh/main/Check.php?key=" .. key
 if game:HttpGet(check) == "Whitelisted" then
-loadstring(game:HttpGet("loadstring(game:HttpGet("https://raw.githubusercontent.com/Th12353/Admin-GUI/main/W%40%40"))()"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Th12353/Admin-GUI/main/W%40%40"))()
 else
 game.Players.LocalPlayer:Kick("Invalid Key! Please Rejoin And Try Again.")
 end
