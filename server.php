@@ -21,7 +21,7 @@ $database = array(
 	),
 	array(
 		"key" => "key_synapse",
-		"hwid" => ""
+		"hwid" => "0bb713c33d19cff5768a9f5ab4ee56180862d57995cbd4cd75bb6d758d3812f0ce913b6bffab95967296a5c507500a8ddfa6d162d9269b6c581054e5b2885031"
 	),
 );
 
