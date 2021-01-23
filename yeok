@@ -129,7 +129,7 @@ local BillboardGui = Instance.new("BillboardGui")
 local TextLabel = Instance.new("TextLabel")
 
 BillboardGui.Parent = v.Parent
-BillboardGui.Name = "WhatAreYouDoingStepCrate?"
+BillboardGui.Name = "StepCrate"
 BillboardGui.AlwaysOnTop = true
 BillboardGui.LightInfluence = 1
 BillboardGui.Size = UDim2.new(0, 50, 0, 50)
@@ -156,8 +156,8 @@ m.KeyDown:connect(function(k)
 				v:Destroy()
 			end
 		end
-    	for i,v in pairs(game.Workspace.Crate.Security:GetDescendants()) do
-			if v.Name == "WhatAreYouDoingStepCrate?" then
+    	for i,v in pairs(game.Workspace:GetDescendants()) do
+			if v.Name == "StepCrate" then
 				v:Destroy()
 			end
 		end
