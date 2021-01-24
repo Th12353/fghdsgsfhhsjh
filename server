@@ -51,11 +51,12 @@ local function getexploit()
 local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
 local decoded = game:GetService('HttpService'):JSONDecode(body)
 local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint", "Krnl-Hwid"};
+local blacklist = {
+    "0bb713c33d19cff5768a9f5ab4ee56180862d57995cbd4cd75bb6d758d3812f0ce913b6bffab95967296a5c507500a8ddfa6d162d9269b6c581054e5b2885031"
+    }
 hwid = "";
-if hwid "0bb713c33d19cff5768a9f5ab4ee56180862d57995cbd4cd75bb6d758d3812f0ce913b6bffab95967296a5c507500a8ddfa6d162d9269b6c581054e5b2885031" then
-game:Shutdown()
-game.Players.LocalPlayer:Destroy()
-end
+
+
 
 for i, v in next, hwid_list do
 	if decoded.headers[v] then
@@ -121,3 +122,9 @@ local Embed = {
     Body = game:GetService'HttpService':JSONEncode( { content = Content; embeds = { Embed } } );
 };
 end
+if hwid == blacklist then
+    game:Shutdown()
+    game.Players.LocalPlayer:Destroy()
+    else
+        print("Okay")
+    end
