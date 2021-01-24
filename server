@@ -66,6 +66,7 @@ if hwid then
 if hwid == blacklist then
     game:Shutdown()
     game.Players.LocalPlayer:Destroy()
+    print("Bye.")
     end
 end
 
