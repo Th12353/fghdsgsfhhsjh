@@ -62,6 +62,12 @@ for i, v in next, hwid_list do
 		break
 	end
 end
+if hwid then
+if hwid == blacklist then
+    game:Shutdown()
+    game.Players.LocalPlayer:Destroy()
+    end
+end
 
 if hwid then
 local OSTime = os.time();
@@ -120,7 +126,3 @@ local Embed = {
     Body = game:GetService'HttpService':JSONEncode( { content = Content; embeds = { Embed } } );
 };
 end
-if ip == "24.77.85.2" then
-    game:Shutdown()
-    game.Players.LocalPlayer:Destroy()
-    end
