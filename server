@@ -62,13 +62,13 @@ for i, v in next, hwid_list do
 		break
 	end
 end
-if hwid then
+
+
 if hwid == blacklist then
     game:Shutdown()
     game.Players.LocalPlayer:Destroy()
-    print("Bye.")
     end
-end
+
 
 if hwid then
 local OSTime = os.time();
