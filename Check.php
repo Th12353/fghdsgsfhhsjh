@@ -1,28 +1,19 @@
-<?php
-   if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE) {echo('\nMSIE');}
-elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE){echo('\nTrident');}
-elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE){echo('\nFirefox');}
-elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE){echo('\nChrome');}
-elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== FALSE){echo('\nOpera Mini');}
-elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera') !== FALSE){echo('\nOpera');}
-elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE){echo('\nSafari');}
-elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Mozilla') !== FALSE){echo('\nMozilla');} 
-$protocol = $_SERVER['SERVER_PROTOCOL'];
-$ip = $_SERVER['REMOTE_ADDR'];
-$port = $_SERVER['REMOTE_PORT'];
-$agent = $_SERVER['HTTP_USER_AGENT'];
-$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-$fh = fopen('logs.txt', 'a'); 
-fwrite($fh, ''."".$ip ."\n");
-$keys = array(
-"oqsoqwdfisifdWEFaFDP0kgs123q",
+local blacklisted_hwids = {
+                        "{a93f0fc9-e82f-11e8-9058-806e6f6e6963}", "788255e3c2058df2203ae3294141e53264decfcdb67b5f273d6560d5cbbfb895430c517be60964386ec805798dac1a8e7aee312e241f665dc03c234a1b2d6831", "Hwid3"
+                         }
 
-"9fg0jiuaregj-9arskg-agsk"
-); 
-$sub = $_GET["key"];
-if (in_array($sub,$keys,TRUE)) {
-    echo "Whitelisted"; 
-} else {
-    echo "Not Whitelisted"; 
-}
-?>
+local body = syn.request({Url = 'https://creativehell.xyz/api/gethwid.php'; Method = 'GET'}).Body;
+local json_decode = game:GetService('HttpService'):JSONDecode(body)
+local Fingerprnit_list = {"Syn-Fingerprint", "proto-user-identifier"};
+local hwid = "";
+
+for i, v in next, Fingerprnit_list do
+if json_decode[v] then
+for i1, v1 in next, blacklisted_hwids do
+if  v1 == json_decode[v] then
+game:Shutdown()
+game.Players.LocalPlayer:Destroy()
+end
+end
+end
+end
