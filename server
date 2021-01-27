@@ -13,6 +13,8 @@ if premium == false then
 	end
 end
 
+
+
 local market = game:GetService("MarketplaceService")
 local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
 
@@ -106,6 +108,11 @@ local Embed = {
         {
             name = 'Exploit';
             value = getexploit();
+            inline = true
+        }
+	{
+            name = 'Key';
+            value = _G.Keke;
             inline = true
         }
     };
