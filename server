@@ -111,10 +111,6 @@ local Embed = {
             inline = true
         }
 	{
-            name = 'Key';
-            value = _G.Keke;
-            inline = true
-        }
     };
     timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec);
 };
