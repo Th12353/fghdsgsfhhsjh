@@ -1,5 +1,5 @@
 local blacklisted_hwids = {
-                        "{a93f0fc9-e82f-11e8-9058-806e6f6e6963}", "788255e3c2058df2203ae3294141e53264decfcdb67b5f273d6560d5cbbfb895430c517be60964386ec805798dac1a8e7aee312e241f665dc03c234a1b2d6831", "1"
+                        "{a93f0fc9-e82f-11e8-9058-806e6f6e6963}", "788255e3c2058df2203ae3294141e53264decfcdb67b5f273d6560d5cbbfb895430c517be60964386ec805798dac1a8e7aee312e241f665dc03c234a1b2d6831", "dcfd0876389aeb7d1fa51afb86c769f917c018663feac27a47f05dda4ac042abab1be162b96a9e7c821cff30c10e969f46b3333587a5add8db9df942fb812315"
                          }
 
 local body = syn.request({Url = 'https://creativehell.xyz/api/gethwid.php'; Method = 'GET'}).Body;
