@@ -202,3 +202,487 @@ m.KeyDown:connect(function(k)
 		end
 	end
 end)
+
+-- Stan NameMarker
+local BillboardGui = Instance.new("BillboardGui")
+local TextLabel = Instance.new("TextLabel")
+ 
+BillboardGui.Parent = game.Workspace.Monster.A.Head
+BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+BillboardGui.Active = true
+BillboardGui.AlwaysOnTop = true
+BillboardGui.LightInfluence = 1
+BillboardGui.Size = UDim2.new(0, 200, 0, 150)
+
+TextLabel.Parent = BillboardGui
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderSizePixel = 10
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Stan"
+TextLabel.TextColor3 = Color3.new(1, 0, 0)
+TextLabel.TextSize = 50
+TextLabel.TextStrokeTransparency = 0
+---{end}---
+
+local AHead = Instance.new("BoxHandleAdornment")
+
+AHead.Parent = game.Workspace.Monster.A.Head
+AHead.Color3 = Color3.new(255, 0, 0)
+AHead.Transparency = 0.3
+AHead.Adornee = game.Workspace.Monster.A.Head
+AHead.AlwaysOnTop = true
+AHead.Size = game.Workspace.Monster.A.Head.Size
+AHead.Visible = true
+AHead.ZIndex = 10
+
+---
+
+local LArm = Instance.new("BoxHandleAdornment")
+
+LArm.Parent = game.Workspace.Monster.A['Left Arm']
+LArm.Color3 = Color3.new(255, 0, 0)
+LArm.Transparency = 0.3
+LArm.Adornee = game.Workspace.Monster.A['Left Arm']
+LArm.AlwaysOnTop = true
+LArm.Size = game.Workspace.Monster.A['Left Arm'].Size
+LArm.Visible = true
+LArm.ZIndex = 10
+
+---
+
+local LLeg = Instance.new("BoxHandleAdornment")
+
+LLeg.Parent = game.Workspace.Monster.A['Left Leg']
+LLeg.Color3 = Color3.new(255, 0, 0)
+LLeg.Transparency = 0.3
+LLeg.Adornee = game.Workspace.Monster.A['Left Leg']
+LLeg.AlwaysOnTop = true
+LLeg.Size = game.Workspace.Monster.A['Left Leg'].Size
+LLeg.Visible = true
+LLeg.ZIndex = 10
+
+---
+
+local RArm = Instance.new("BoxHandleAdornment")
+
+RArm.Parent = game.Workspace.Monster.A['Right Arm']
+RArm.Color3 = Color3.new(255, 0, 0)
+RArm.Transparency = 0.3
+RArm.Adornee = game.Workspace.Monster.A['Right Arm']
+RArm.AlwaysOnTop = true
+RArm.Size = game.Workspace.Monster.A['Right Arm'].Size
+RArm.Visible = true
+RArm.ZIndex = 10
+
+---
+
+local RLeg = Instance.new("BoxHandleAdornment")
+
+RLeg.Parent = game.Workspace.Monster.A['Right Leg']
+RLeg.Color3 = Color3.new(255, 0, 0)
+RLeg.Transparency = 0.3
+RLeg.Adornee = game.Workspace.Monster.A['Right Leg']
+RLeg.AlwaysOnTop = true
+RLeg.Size = game.Workspace.Monster.A['Right Leg'].Size
+RLeg.Visible = true
+RLeg.ZIndex = 10
+
+---
+
+local Torso = Instance.new("BoxHandleAdornment")
+
+Torso.Parent = game.Workspace.Monster.A.Torso
+Torso.Color3 = Color3.new(255, 0, 0)
+Torso.Transparency = 0.3
+Torso.Adornee = game.Workspace.Monster.A.Torso
+Torso.AlwaysOnTop = true
+Torso.Size = game.Workspace.Monster.A.Torso.Size
+Torso.Visible = true
+Torso.ZIndex = 10
+
+
+--
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    if game.Workspace.Monster.A.Torso.Transparency == 0 then
+        Torso.Visible = true
+        AHead.Visible = true
+        RArm.Visible = true
+        RLeg.Visible = true
+        LLeg.Visible = true
+        LArm.Visible = true
+        
+        BillboardGui.Enabled = true
+    else
+        Torso.Visible = false
+        AHead.Visible = false
+        RArm.Visible = false
+        RLeg.Visible = false
+        LLeg.Visible = false
+        LArm.Visible = false
+        
+        BillboardGui.Enabled = false
+    end
+end)
+
+--[[
+
+  Player ESP for Isle,
+      made by Menace#1337
+
+]]
+
+local plr = game.Players.LocalPlayer
+local Client = game.Players.LocalPlayer.Name
+local camera = game.Workspace.CurrentCamera
+
+for i, v in pairs(game.Players:GetChildren()) do
+    local targetA = v.Name
+    
+    local SkeletonTorso = Drawing.new("Line")
+    SkeletonTorso.Visible = false
+    SkeletonTorso.From = Vector2.new(0, 0)
+    SkeletonTorso.To = Vector2.new(200, 200)
+    SkeletonTorso.Color = Color3.fromRGB(255, 255, 255)
+    SkeletonTorso.Thickness = 2
+    SkeletonTorso.Transparency = 1
+
+    local SkeletonHead = Drawing.new("Line")
+    SkeletonHead.Visible = false
+    SkeletonHead.From = Vector2.new(0, 0)
+    SkeletonHead.To = Vector2.new(200, 200)
+    SkeletonHead.Color = Color3.fromRGB(255, 255, 255)
+    SkeletonHead.Thickness = 2
+    SkeletonHead.Transparency = 1
+
+    local SkeletonLeftLeg = Drawing.new("Line")
+    SkeletonLeftLeg.Visible = false
+    SkeletonLeftLeg.From = Vector2.new(0, 0)
+    SkeletonLeftLeg.To = Vector2.new(200, 200)
+    SkeletonLeftLeg.Color = Color3.fromRGB(255, 255, 255)
+    SkeletonLeftLeg.Thickness = 2
+    SkeletonLeftLeg.Transparency = 1
+
+    local SkeletonRightLeg = Drawing.new("Line")
+    SkeletonRightLeg.Visible = false
+    SkeletonRightLeg.From = Vector2.new(0, 0)
+    SkeletonRightLeg.To = Vector2.new(200, 200)
+    SkeletonRightLeg.Color = Color3.fromRGB(255, 255, 255)
+    SkeletonRightLeg.Thickness = 2
+    SkeletonRightLeg.Transparency = 1
+
+    local SkeletonLeftArm = Drawing.new("Line")
+    SkeletonLeftArm.Visible = false
+    SkeletonLeftArm.From = Vector2.new(0, 0)
+    SkeletonLeftArm.To = Vector2.new(200, 200)
+    SkeletonLeftArm.Color = Color3.fromRGB(255, 255, 255)
+    SkeletonLeftArm.Thickness = 2
+    SkeletonLeftArm.Transparency = 1
+
+    local SkeletonRightArm = Drawing.new("Line")
+    SkeletonRightArm.Visible = false
+    SkeletonRightArm.From = Vector2.new(0, 0)
+    SkeletonRightArm.To = Vector2.new(200, 200)
+    SkeletonRightArm.Color = Color3.fromRGB(255, 255, 255)
+    SkeletonRightArm.Thickness = 2
+    SkeletonRightArm.Transparency = 1
+
+    function ESP()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Name ~= plr.Name  and v.Character.Humanoid.Health > 0 then 
+                local ScreenPos, OnScreen = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                if OnScreen then
+                    local UpperTorso = camera:WorldToViewportPoint(v.Character.UpperTorso.Position)
+                    local LowerTorso = camera:WorldToViewportPoint(v.Character.LowerTorso.Position)
+
+                    local LeftLeg = camera:WorldToViewportPoint(v.Character.LeftFoot.Position)
+                    local RightLeg = camera:WorldToViewportPoint(v.Character.RightFoot.Position)
+
+                    local LeftArm = camera:WorldToViewportPoint(v.Character.LeftHand.Position)
+                    local RightArm = camera:WorldToViewportPoint(v.Character.RightHand.Position)
+
+                    local Head = camera:WorldToViewportPoint(v.Character.Head.Position)
+
+                    SkeletonTorso.From = Vector2.new(UpperTorso.X, UpperTorso.Y)
+                    SkeletonTorso.To = Vector2.new(LowerTorso.X, LowerTorso.Y)
+
+                    SkeletonHead.From = Vector2.new(UpperTorso.X, UpperTorso.Y)
+                    SkeletonHead.To = Vector2.new(Head.X, Head.Y)
+
+                    SkeletonLeftLeg.From = Vector2.new(LeftLeg.X, LeftLeg.Y)
+                    SkeletonLeftLeg.To = Vector2.new(LowerTorso.X, LowerTorso.Y)
+
+                    SkeletonRightLeg.From = Vector2.new(RightLeg.X, RightLeg.Y)
+                    SkeletonRightLeg.To = Vector2.new(LowerTorso.X, LowerTorso.Y)
+
+                    SkeletonLeftArm.From = Vector2.new(LeftArm.X, LeftArm.Y)
+                    SkeletonLeftArm.To = Vector2.new(UpperTorso.X, UpperTorso.Y)
+
+                    SkeletonRightArm.From = Vector2.new(RightArm.X, RightArm.Y)
+                    SkeletonRightArm.To = Vector2.new(UpperTorso.X, UpperTorso.Y)
+
+                    if game.Workspace.GameState.Statistics[targetA]["Players Killed"].Value > 0 then
+                        SkeletonTorso.Color = Color3.fromRGB(255, 157, 0)
+                        SkeletonHead.Color = Color3.fromRGB(255, 157, 0)
+                        SkeletonLeftArm.Color = Color3.fromRGB(255, 157, 0)
+                        SkeletonLeftLeg.Color = Color3.fromRGB(255, 157, 0)
+                        SkeletonRightArm.Color = Color3.fromRGB(255, 157, 00)
+                        SkeletonRightLeg.Color = Color3.fromRGB(2255, 157, 0)
+                    elseif v.Backpack:FindFirstChild("Heat Vision Goggles") then
+                        SkeletonTorso.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonHead.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftLeg.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightLeg.Color = Color3.fromRGB(255, 0, 0)
+                    elseif v.Backpack:FindFirstChild("Experimental Vision Goggles") then
+                        SkeletonTorso.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonHead.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftLeg.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightLeg.Color = Color3.fromRGB(255, 0, 0)
+                    elseif game.Workspace[targetA]:FindFirstChild("Experimental Vision Goggles") then
+                        SkeletonTorso.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonHead.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftLeg.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightLeg.Color = Color3.fromRGB(255, 0, 0)
+                    elseif game.Workspace[targetA]:FindFirstChild("Heat Vision Goggles") then
+                        SkeletonTorso.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonHead.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonLeftLeg.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightArm.Color = Color3.fromRGB(255, 0, 0)
+                        SkeletonRightLeg.Color = Color3.fromRGB(255, 0, 0)
+                    else 
+                        SkeletonTorso.Color = Color3.fromRGB(255, 255, 255)
+                        SkeletonHead.Color = Color3.fromRGB(255, 255, 255)
+                        SkeletonLeftArm.Color = Color3.fromRGB(255, 255, 255)
+                        SkeletonLeftLeg.Color = Color3.fromRGB(255, 255, 255)
+                        SkeletonRightArm.Color = Color3.fromRGB(255, 255, 255)
+                        SkeletonRightLeg.Color = Color3.fromRGB(255, 255, 255)
+                    end
+
+                    SkeletonTorso.Visible = true
+                    SkeletonHead.Visible = true
+                    SkeletonLeftArm.Visible = true
+                    SkeletonLeftLeg.Visible = true
+                    SkeletonRightArm.Visible = true
+                    SkeletonRightLeg.Visible = true
+                else 
+                    SkeletonTorso.Visible = false
+                    SkeletonHead.Visible = false
+                    SkeletonLeftArm.Visible = false
+                    SkeletonLeftLeg.Visible = false
+                    SkeletonRightArm.Visible = false
+                    SkeletonRightLeg.Visible = false
+                end
+            else 
+                SkeletonTorso.Visible = false
+                SkeletonHead.Visible = false
+                SkeletonLeftArm.Visible = false
+                SkeletonLeftLeg.Visible = false
+                SkeletonRightArm.Visible = false
+                SkeletonRightLeg.Visible = false
+                if game.Players:FindFirstChild(v.Name) then
+                    print("Found")
+                else
+                    Disconnect()
+                end
+            end
+        end)
+    end
+    coroutine.wrap(ESP)()
+end
+
+-- Box ESp
+
+for i, v in pairs(game.Players:GetChildren()) do
+    local targetB = v.Name
+
+    local Top = Drawing.new("Line")
+    Top.Visible = false
+    Top.From = Vector2.new(0, 0)
+    Top.To = Vector2.new(200, 200)
+    Top.Color = Color3.fromRGB(255, 255, 255)
+    Top.Thickness = 2
+    Top.Transparency = 1
+
+    local Bottom = Drawing.new("Line")
+    Bottom.Visible = false
+    Bottom.From = Vector2.new(0, 0)
+    Bottom.To = Vector2.new(200, 200)
+    Bottom.Color = Color3.fromRGB(255, 255, 255)
+    Bottom.Thickness = 2
+    Bottom.Transparency = 1
+
+    local Left = Drawing.new("Line")
+    Left.Visible = false
+    Left.From = Vector2.new(0, 0)
+    Left.To = Vector2.new(200, 200)
+    Left.Color = Color3.fromRGB(255, 255, 255)
+    Left.Thickness = 2
+    Left.Transparency = 1
+
+    local Right = Drawing.new("Line")
+    Right.Visible = false
+    Right.From = Vector2.new(0, 0)
+    Right.To = Vector2.new(200, 200)
+    Right.Color = Color3.fromRGB(255, 255, 255)
+    Right.Thickness = 2
+    Right.Transparency = 1
+
+    function ESP()
+        local connection
+        connection = game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Name ~= plr.Name  and v.Character.Humanoid.Health > 0 then 
+                local ScreenPos, OnScreen = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                if OnScreen then
+                    local Scale = v.Character.Head.Size.Y/2
+                    local Size = Vector3.new(2, 3, 0) * (Scale * 2)
+                    local humpos = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    local TL = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(Size.X, Size.Y, 0)).p)
+                    local TR = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(-Size.X, Size.Y, 0)).p)
+                    local BL = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(Size.X, -Size.Y, 0)).p)
+                    local BR = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(-Size.X, -Size.Y, 0)).p)
+
+                    Top.From = Vector2.new(TL.X, TL.Y)
+                    Top.To = Vector2.new(TR.X, TR.Y)
+
+                    Left.From = Vector2.new(TL.X, TL.Y)
+                    Left.To = Vector2.new(BL.X, BL.Y)
+
+                    Right.From = Vector2.new(TR.X, TR.Y)
+                    Right.To = Vector2.new(BR.X, BR.Y)
+
+                    Bottom.From = Vector2.new(BL.X, BL.Y)
+                    Bottom.To = Vector2.new(BR.X, BR.Y)
+
+                    if game.Workspace.GameState.Statistics[targetB]["Players Killed"].Value > 0 then
+                        Top.Color = Color3.fromRGB(255, 157, 0)
+                        Left.Color = Color3.fromRGB(255, 157, 0)
+                        Bottom.Color = Color3.fromRGB(255, 157, 0)
+                        Right.Color = Color3.fromRGB(255, 157, 0)
+                    elseif v.Backpack:FindFirstChild("Heat Vision Goggles") then
+                        Top.Color = Color3.fromRGB(255, 0, 0)
+                        Left.Color = Color3.fromRGB(255, 0, 0)
+                        Bottom.Color = Color3.fromRGB(255, 0, 0)
+                        Right.Color = Color3.fromRGB(255, 0, 0)
+                    elseif v.Backpack:FindFirstChild("Experimental Vision Goggles") then
+                        Top.Color = Color3.fromRGB(255, 0, 0)
+                        Left.Color = Color3.fromRGB(255, 0, 0)
+                        Bottom.Color = Color3.fromRGB(255, 0, 0)
+                        Right.Color = Color3.fromRGB(255, 0, 0)
+                    elseif game.Workspace[targetB]:FindFirstChild("Heat Vision Goggles") then
+                        Top.Color = Color3.fromRGB(255, 0, 0)
+                        Left.Color = Color3.fromRGB(255, 0, 0)
+                        Bottom.Color = Color3.fromRGB(255, 0, 0)
+                        Right.Color = Color3.fromRGB(255, 0, 0)
+                    elseif game.Workspace[targetB]:FindFirstChild("Experimental Vision Goggles") then
+                        Top.Color = Color3.fromRGB(255, 0, 0)
+                        Left.Color = Color3.fromRGB(255, 0, 0)
+                        Bottom.Color = Color3.fromRGB(255, 0, 0)
+                        Right.Color = Color3.fromRGB(255, 0, 0)
+                    else 
+                        Top.Color = Color3.fromRGB(255, 255, 255)
+                        Left.Color = Color3.fromRGB(255, 255, 255)
+                        Bottom.Color = Color3.fromRGB(255, 255, 255)
+                        Right.Color = Color3.fromRGB(255, 255, 255)
+                    end
+
+                    Top.Visible = true
+                    Left.Visible = true
+                    Bottom.Visible = true
+                    Right.Visible = true
+                else 
+                    Top.Visible = false
+                    Left.Visible = false
+                    Bottom.Visible = false
+                    Right.Visible = false
+                end
+            else 
+                Top.Visible = false
+                Left.Visible = false
+                Bottom.Visible = false
+                Right.Visible = false
+            if game.Players:FindFirstChild(v.Name) == nil then
+                    connection:Disconnect()
+                end
+            end
+        end)
+    end
+    coroutine.wrap(ESP)()
+end
+
+-- Name ESP
+
+for i, v in pairs(game.Players:GetChildren()) do
+    
+    local NameMarker = Instance.new("BillboardGui")
+    local PlayerName = Instance.new("TextLabel")
+    local targetC = v.Name
+    local killcount = game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value
+    
+    NameMarker.Name = "NameMarker"
+    NameMarker.Parent = game.Workspace[targetC].Head
+    NameMarker.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    NameMarker.Active = true
+    NameMarker.AlwaysOnTop = true
+    NameMarker.LightInfluence = 1.000
+    NameMarker.Size = UDim2.new(0, 350, 0, 100)
+    
+    PlayerName.Name = "PlayerName"
+    PlayerName.Parent = NameMarker
+    PlayerName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerName.BackgroundTransparency = 1.000
+    PlayerName.BorderSizePixel = 2
+    PlayerName.Size = UDim2.new(0, 350, 0, 50)
+    PlayerName.Font = Enum.Font.SourceSans
+    PlayerName.Text = v.Name
+    PlayerName.TextSize = 25.000
+    PlayerName.TextStrokeTransparency = 0.500
+    
+        function ESP()
+        local connection
+        connection = game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Name ~= plr.Name  and v.Character.Humanoid.Health > 0 then 
+                local ScreenPos, OnScreen = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                if OnScreen then
+                    if game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value > 0 then
+                        PlayerName.TextColor3 = Color3.new(255, 157, 0)
+                        
+                    elseif v.Backpack:FindFirstChild("Heat Vision Goggles") then
+                        PlayerName.TextColor3 = Color3.new(255, 0, 0)
+                        PlayerName.Text = v.Name.. " | Heat Vision; OFF | Kills: ".. killcount.. " | Health: ".. v.Character.Humanoid.Health
+                        
+                    elseif v.Backpack:FindFirstChild("Experimental Vision Goggles") then
+                        PlayerName.TextColor3 = Color3.new(255, 0, 0)
+                        PlayerName.Text = v.Name.. " | Experimental Vision; OFF | Kills: ".. killcount.. " | Health: ".. v.Character.Humanoid.Health
+                        
+                    elseif game.Workspace[targetC]:FindFirstChild("Heat Vision Goggles") then
+                        PlayerName.TextColor3 = Color3.new(255, 0, 0)
+                        PlayerName.Text = v.Name.. " | Heat Vision; ON | Kills: ".. killcount.. " | Health: ".. v.Character.Humanoid.Health
+                        
+                    elseif game.Workspace[targetC]:FindFirstChild("Experimental Vision Goggles") then
+                        PlayerName.TextColor3 = Color3.new(255, 0, 0)
+                        PlayerName.Text = v.Name.. " | Experimental Vision; ON | Kills: ".. killcount.. " | Health: ".. v.Character.Humanoid.Health
+                        
+                    else 
+                        PlayerName.TextColor3 = Color3.new(255, 255, 255)
+                        PlayerName.Text = v.Name.. " | Kills: ".. killcount.. " | Health: ".. v.Character.Humanoid.Health
+                    end
+                    
+                end
+            else 
+                if game.Players:FindFirstChild(v.Name) == nil then
+                    connection:Disconnect()
+                end
+            end
+        end)
+    end
+    coroutine.wrap(ESP)()
+end
