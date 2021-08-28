@@ -46,7 +46,7 @@ end
 end
 end
 
-Isle:AddNotification("C/V to turn on/off player esp, B/N to turn on/off item ESP", 255, 255, 255)
+Isle:AddNotification("Z/X to turn on/off player esp, B/N to turn on/off item ESP", 255, 255, 255)
 
 
 
@@ -174,7 +174,7 @@ end)
 	if k == "z" then  
 for i, v in ipairs(workspace:GetDescendants()) do
     if v.Name == "NameMarker" then
-        v.Active = true
+        v.Enabled = true
 end
 end
 end  
@@ -185,7 +185,7 @@ end)
 	if k == "x" then  
 for i, v in ipairs(workspace:GetDescendants()) do
     if v.Name == "NameMarker" then
-        v.Active = false
+        v.Enabled = false
 end
 end
 end  
