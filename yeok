@@ -183,6 +183,11 @@ m.KeyDown:connect(function(k)
 				v:Destroy()
 			end
 		end
+		for i, v in ipairs(workspace:GetDescendants()) do
+    if v.Name == "NameMarker" then
+        v:Destroy()
+    end
+end
 		for i,v in pairs(workspace:GetChildren()) do 
 			if v.Name:find("Trap") or v.Name:find("Tripwire") then 
 				if v:FindFirstChildWhichIsA("BillboardGui") then 
