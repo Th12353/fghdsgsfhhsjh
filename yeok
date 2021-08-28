@@ -46,7 +46,7 @@ end
 end
 end
 
-Isle:AddNotification("To use the ESP press B, to turn it off press N.", 255, 255, 255)
+Isle:AddNotification("C/V to turn on/off player esp, B/N to turn on/off item ESP", 255, 255, 255)
 
 
 
@@ -169,6 +169,28 @@ end
 	end
 end)
 
+	  m.KeyDown:connect(function(k)
+	k = k:lower()
+	if k == "z" then  
+for i, v in ipairs(workspace:GetDescendants()) do
+    if v.Name == "NameMarker" then
+        v.Active = true
+end
+end
+end  
+end)
+	    
+	  m.KeyDown:connect(function(k)
+	k = k:lower()
+	if k == "x" then  
+for i, v in ipairs(workspace:GetDescendants()) do
+    if v.Name == "NameMarker" then
+        v.Active = false
+end
+end
+end  
+end)
+
 m.KeyDown:connect(function(k)
 	k = k:lower()
 	if k == "n" then
@@ -183,11 +205,7 @@ m.KeyDown:connect(function(k)
 				v:Destroy()
 			end
 		end
-		for i, v in ipairs(workspace:GetDescendants()) do
-    if v.Name == "NameMarker" then
-        v:Destroy()
-    end
-end
+	
 		for i,v in pairs(workspace:GetChildren()) do 
 			if v.Name:find("Trap") or v.Name:find("Tripwire") then 
 				if v:FindFirstChildWhichIsA("BillboardGui") then 
